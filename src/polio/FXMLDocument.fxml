@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-
 
 <AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="polio.FXMLDocumentController">
    <children>
@@ -18,5 +19,10 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <Button fx:id="filter" layoutX="104.0" layoutY="7.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onMouseClicked="#handleChangeFilter" prefHeight="26.0" prefWidth="59.0" text="Filter" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="7.0" />
+      <Text layoutX="564.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum" AnchorPane.rightAnchor="176.8779296875" AnchorPane.topAnchor="13.0" />
+      <Text layoutX="677.6201171875" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum" AnchorPane.rightAnchor="59.931640625" AnchorPane.topAnchor="14.0" />
+      <TextField fx:id="min" layoutX="625.0" layoutY="10.0" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="10.0" />
+      <TextField fx:id="max" layoutX="743.0" layoutY="10.0" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="100" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

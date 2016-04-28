@@ -13,16 +13,52 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
  * @author csstudent
  */
 public class FXMLDocumentController implements Initializable {
+    private DataEntry[] polioEntries;
+    private XYChart.Series<String, Number> polioSeries;
     
     @FXML
     private BarChart chart;
     
+    @FXML
+    private TextField min;
+    
+    @FXML
+    private TextField max;
+    
+    @FXML
+    private Button filter;
+    
+    @FXML
+    private void handleChangeFilter(MouseEvent event){
+        Integer minimum = 0;
+        Integer maximum = 0;
+        try {
+            minimum = Integer.parseInt(min.getCharacters().toString());
+            maximum = Integer.parseInt(max.getCharacters().toString());
+            if(minimum < 100 && minimum < maximum && maximum > 0){
+            chart.getData().clear();
+            polioSeries = new XYChart.Series();
+                for (DataEntry d : polioEntries){
+                    Integer value = Integer.parseInt(d.getValue());
+                    if(d.getData().getCountry()!= null && value >= minimum && value <= maximum){
+                        polioSeries.getData().add(new XYChart.Data(d.getData().getCountry(), value));
+                    }
+                }
+            chart.getData().add(polioSeries);
+            }
+        } catch (Exception e){
+             System.out.println("Something went wrong.");  
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,9 +87,9 @@ public class FXMLDocumentController implements Initializable {
        
         Gson gson = new Gson();
         PolioDataSet ds = gson.fromJson(str, PolioDataSet.class);
-        DataEntry[] polioEntries = ds.getDataEntries();
+        polioEntries = ds.getDataEntries();
         
-        XYChart.Series<String, Number> polioSeries = new XYChart.Series();
+        polioSeries = new XYChart.Series();
         polioSeries.setName("% Polio Immunizations");
         for (DataEntry d : polioEntries){
             if(d.getData().getCountry()!=null){
