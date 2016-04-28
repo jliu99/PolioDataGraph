@@ -9,11 +9,17 @@ import com.google.gson.Gson;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -38,6 +44,24 @@ public class FXMLDocumentController implements Initializable {
     private Button filter;
     
     @FXML
+    private MenuBar menu;
+    
+    @FXML
+    private Menu fileMenu;
+    
+    @FXML
+    private MenuItem close;
+    
+    @FXML
+    private Menu editMenu;
+    
+    @FXML
+    private Menu helpMenu;
+    
+    @FXML
+    private MenuItem about;
+    
+    @FXML
     private void handleChangeFilter(MouseEvent event){
         Integer minimum = 0;
         Integer maximum = 0;
@@ -58,6 +82,23 @@ public class FXMLDocumentController implements Initializable {
         } catch (Exception e){
              System.out.println("Something went wrong.");  
         }
+    }
+    
+    @FXML
+    private void handleCloseMenu(ActionEvent event){
+        System.exit(-1);
+    }
+    
+    @FXML
+    private void handleAboutMenu(ActionEvent event){
+        Alert dialogBox = new Alert(AlertType.INFORMATION);
+        dialogBox.setTitle("About Project");
+        dialogBox.setHeaderText(null);
+        dialogBox.setContentText("This project graphs data provided by the World Health Organization regarding"
+                               + " the percent population of countries over the world that have been vaccinated"
+                               + " for polio. To filter for specific minimum and maximum percentage thresholds,"
+                               + " enter appropriate values in the textfields and press the Filter button.");
+        dialogBox.showAndWait();
     }
     
     @Override

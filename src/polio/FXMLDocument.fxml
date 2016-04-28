@@ -11,18 +11,47 @@
 
 <AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="polio.FXMLDocumentController">
    <children>
-      <BarChart fx:id="chart" barGap="2.0" categoryGap="2.5" legendVisible="false" title="\% Polio Immunizations vs. Country" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <Button fx:id="filter" layoutX="104.0" layoutY="7.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onMouseClicked="#handleChangeFilter" prefHeight="26.0" prefWidth="59.0" text="Filter" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="7.0" />
-      <Text layoutX="564.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum" AnchorPane.rightAnchor="176.8779296875" AnchorPane.topAnchor="13.0" />
-      <Text layoutX="677.6201171875" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum" AnchorPane.rightAnchor="59.931640625" AnchorPane.topAnchor="14.0" />
-      <TextField fx:id="min" layoutX="625.0" layoutY="10.0" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="10.0" />
-      <TextField fx:id="max" layoutX="743.0" layoutY="10.0" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="100" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="10.0" />
+      <BorderPane layoutX="4.0" prefHeight="600.0" prefWidth="800.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="max" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="100" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="10.0" />
+                  <TextField fx:id="min" maxHeight="20.0" maxWidth="50.0" minHeight="15.0" minWidth="50.0" text="0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="10.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum" AnchorPane.rightAnchor="59.931640625" AnchorPane.topAnchor="14.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minimum" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="14.0" />
+                  <BarChart fx:id="chart" barGap="2.0" categoryGap="2.5" legendVisible="false" title="\% Polio Immunizations vs. Country" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <Button fx:id="filter" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onMouseClicked="#handleChangeFilter" prefHeight="26.0" prefWidth="59.0" text="Filter" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="7.0" />
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <MenuBar fx:id="menu" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="close" mnemonicParsing="false" onAction="#handleCloseMenu" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="editMenu" mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#handleAboutMenu" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>
