@@ -30,7 +30,8 @@ import javafx.scene.input.MouseEvent;
 public class FXMLDocumentController implements Initializable {
     private DataEntry[] polioEntries;
     private XYChart.Series<String, Number> polioSeries;
-    
+    private Integer minimum;
+    private Integer maximum;
     @FXML
     private BarChart chart;
     
@@ -63,8 +64,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleChangeFilter(MouseEvent event){
-        Integer minimum = 0;
-        Integer maximum = 0;
+
         try {
             minimum = Integer.parseInt(min.getCharacters().toString());
             maximum = Integer.parseInt(max.getCharacters().toString());
@@ -97,7 +97,8 @@ public class FXMLDocumentController implements Initializable {
         dialogBox.setContentText("This project graphs data provided by the World Health Organization regarding"
                                + " the percent population of countries over the world that have been vaccinated"
                                + " for polio. To filter for specific minimum and maximum percentage thresholds,"
-                               + " enter appropriate values in the textfields and press the Filter button.");
+                               + " enter appropriate values in the textfields and press the Filter button. If for"
+                               + " some reason the textfields are unclickable, press Tab to select them.");
         dialogBox.showAndWait();
     }
     
