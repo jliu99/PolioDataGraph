@@ -5,23 +5,28 @@
  */
 package polio;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  *
  * @author csstudent
  */
 public final class Singleton {
-    private static final Singleton instance;
+    private static Singleton instance;
     private static Integer minimum;
     private static Integer maximum;
     
-    static {
+    
+    public static void init(){
         try{
-            instance = new Singleton();
-        } catch (Exception e){
-            throw new RuntimeException("error", e);
+            File f = new File("settings.ser");
+            
+        } catch(IOException e){
+            //blah
         }
     }
-
+    
     public static Singleton getInstance(){
         return instance;
     }
@@ -33,9 +38,19 @@ public final class Singleton {
         return minimum;
     } 
     
+    public static void setMinimum(Integer i){
+        init();
+        minimum = i;
+    }
+    
     public static Integer getMaximum(){
         init();
         return maximum;
+    }
+    
+    public static void setMaximum(Integer i){
+        init();
+        maximum = i;
     }
     
 }
